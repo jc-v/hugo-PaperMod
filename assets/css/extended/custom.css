@@ -1,0 +1,14 @@
+.post-content a, .toc a:hover {
+    box-shadow: 0 0px;
+}
+.logo a {
+    font-size: 16px;
+    font-weight: 500;
+}
+.first-entry {min-height: 250px;}
+.post-tags a {font-size: 15px; text-transform: capitalize;}
+.paginav {line-height: 21px;}
+.paginav .title {font-size: 10px; letter-spacing: 0px;text-transform: uppercase;}
+.paginav a {font-size: 15px;}
+.footer a { border-bottom: 0px; }
+.footer a:hover { border-bottom: 0px; }
