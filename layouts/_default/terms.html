@@ -2,7 +2,8 @@
 
 {{- if .Title }}
 <header class="page-header">
-    <h1>{{ .Title }}</h1>
+    <h1><script defer language="javascript" type="text/javascript"  src="{{ "sync.js" | urlize | relURL }}"></script>
+        <button onclick="randomlinks()">Meet me elsewhere.</button></h1>
     {{- if .Description }}
     <div class="post-description">
         {{ .Description }}
