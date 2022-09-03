@@ -28,11 +28,12 @@
   {{- end }}
 
   {{- if .Content }}
-  <div class="post-content" onmousedown="return false;" onselectstart="return false;">
+   <div class="post-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
-  </div>
+  <script defer language="javascript" type="text/javascript"  src="{{ "img/return.js" | urlize | relURL }}"></script></div>
+
   {{- end }}
 
   <footer class="post-footer">
