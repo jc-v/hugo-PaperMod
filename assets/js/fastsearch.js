@@ -28,17 +28,17 @@ window.onload = function () {
                     };
                     if (params.fuseOpts) {
                         options = {
-                            isCaseSensitive: params.fuseOpts.iscasesensitive ? params.fuseOpts.iscasesensitive : false,
-                            includeScore: params.fuseOpts.includescore ? params.fuseOpts.includescore : false,
-                            includeMatches: params.fuseOpts.includematches ? params.fuseOpts.includematches : false,
-                            minMatchCharLength: params.fuseOpts.minmatchcharlength ? params.fuseOpts.minmatchcharlength : 1,
-                            shouldSort: params.fuseOpts.shouldsort ? params.fuseOpts.shouldsort : true,
-                            findAllMatches: params.fuseOpts.findallmatches ? params.fuseOpts.findallmatches : false,
-                            keys: params.fuseOpts.keys ? params.fuseOpts.keys : ['title', 'permalink', 'summary', 'content'],
-                            location: params.fuseOpts.location ? params.fuseOpts.location : 0,
-                            threshold: params.fuseOpts.threshold ? params.fuseOpts.threshold : 0.4,
-                            distance: params.fuseOpts.distance ? params.fuseOpts.distance : 100,
-                            ignoreLocation: params.fuseOpts.ignorelocation ? params.fuseOpts.ignorelocation : true
+                            isCaseSensitive: params.fuseOpts.iscasesensitive ?? false,
+                            includeScore: params.fuseOpts.includescore ?? false,
+                            includeMatches: params.fuseOpts.includematches ?? false,
+                            minMatchCharLength: params.fuseOpts.minmatchcharlength ?? 1,
+                            shouldSort: params.fuseOpts.shouldsort ?? true,
+                            findAllMatches: params.fuseOpts.findallmatches ?? false,
+                            keys: params.fuseOpts.keys ?? ['title', 'permalink', 'summary', 'content'],
+                            location: params.fuseOpts.location ?? 0,
+                            threshold: params.fuseOpts.threshold ?? 0.4,
+                            distance: params.fuseOpts.distance ?? 100,
+                            ignoreLocation: params.fuseOpts.ignorelocation ?? true
                         }
                     }
                     fuse = new Fuse(data, options); // build the index from the json file
@@ -77,7 +77,12 @@ sInput.onkeyup = function (e) {
     // run a search query (for "term") every time a letter is typed
     // in the search box
     if (fuse) {
-        const results = fuse.search(this.value.trim()); // the actual query being run using fuse.js
+        let results;
+        if (params.fuseOpts) {
+            results = fuse.search(this.value.trim(), {limit: params.fuseOpts.limit}); // the actual query being run using fuse.js along with options
+        } else {
+            results = fuse.search(this.value.trim()); // the actual query being run using fuse.js
+        }
         if (results.length !== 0) {
             // build our html if result exists
             let resultSet = ''; // our results bucket
